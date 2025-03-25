@@ -1,0 +1,22 @@
+<h1>Set Details</h1>
+<div *ngIf="selectedSet == null">
+    Please select a set to view.
+</div>
+<div *ngIf="selectedSet != null">
+    <h3>{{selectedSet.name}}</h3>
+    {{selectedSet.description}}
+    <br/>
+    <b>Reps:</b> {{selectedSet.repCount}}
+    <br/>
+    <b>Rep Length:</b> {{selectedSet.repLength}} yards
+    <br/>
+    <b>Total Length:</b> {{selectedSet.repLength * selectedSet.repCount}} yards
+    <br/>
+    <b>Labels:</b> {{selectedSet.labels}}
+</div>
+<br/>
+<a [routerLink]="['/sets']">
+    <button>
+        Back to Set List
+    </button>
+</a>

@@ -1,0 +1,6 @@
+<h1>Swim Sets</h1>
+<div *ngFor="let swimSet of swimSets">
+    <a (click)="clickSet(swimSet)">
+        <h3>{{swimSet.name}}</h3>
+    </a>
+</div>

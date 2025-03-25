@@ -1,0 +1,12 @@
+<mat-dialog-content>
+    <h1>Add Workout for {{workoutDate}}</h1>
+    Set Performed:
+    <br/>
+    <select [formControl]="selectedSet">
+        <option *ngFor="let swimSet of possibleSets" [value]="swimSet.id"><p>{{swimSet.name}}</p></option>
+    </select>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1">Add</button>
+    <button mat-raised-button color="primary" mat-dialog-close tabindex="-1">Cancel</button>
+</mat-dialog-actions>

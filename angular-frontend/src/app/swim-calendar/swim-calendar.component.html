@@ -1,0 +1,17 @@
+<h1>Workout Schedule</h1>
+<label for="start">Sets Performed on Date:</label>
+
+<input id="lookupDate" type="date" [formControl]="lookupDate" (input)="changeDate($event)">
+<br/>
+<button (click)="addSetPopup()">
+    Add Set
+</button>
+<h3>Summary for {{ lookupDate.value }}</h3>
+<h5>Total Yards</h5>
+<p>{{ totalYards.value }}<p>
+<h5>Workouts Performed</h5>
+<div *ngFor="let alias of setsPerformed.controls; let i=index">
+    <p>{{ setsPerformed.controls[i].value }}</p>
+</div>
+<h5>Areas Worked</h5>
+<p>{{ areasWorked.value }}</p>

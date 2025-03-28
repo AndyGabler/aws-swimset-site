@@ -1,4 +1,4 @@
-package io.github.andygabler.SwimSetPlannerBackend;
+package io.github.andygabler.swimsetplannerbackend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

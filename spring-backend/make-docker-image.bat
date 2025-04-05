@@ -1,1 +1,1 @@
-docker image build -t swimsetplannerbackend .
+docker build -t swimsetplannerbackend .

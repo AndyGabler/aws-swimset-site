@@ -44,6 +44,7 @@ jobs:
 
       - name: Copy to S3
         run: |
+          cd angular-frontend
           aws s3 cp ./dist/swim-planner-frontend/browser/* s3://swim-set-static-angular-site
 
       # TODO, when I use CloudFront for this, might want a step here to invalidate CloudFront

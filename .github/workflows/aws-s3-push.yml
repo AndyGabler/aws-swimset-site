@@ -1,0 +1,49 @@
+# Upload backend to AWS ECS
+
+name: Deploy Frontend to Amazon S3
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  AWS_REGION: us-east-1
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@0e613a0980cbf65ed5b322eb7a1e075d28913a83
+        # TODO article here on how to make this more secure and not require me changing Github secrets before every log in
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Node Setup
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.12.0'
+
+      - name: Build Angular Application
+        run: |
+          # Move to Angular frontend directory, install Angular, build Angular app
+          cd angular-frontend
+          npm install -g @angular/cli
+          npm install
+          ng build --configuration production
+
+      - name: Copy to S3
+        run: |
+          aws s3 cp ./dist/swim-planner-frontend/browser/* s3://swim-set-static-angular-site
+
+      # TODO, when I use CloudFront for this, might want a step here to invalidate CloudFront

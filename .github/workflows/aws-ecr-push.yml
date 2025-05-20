@@ -15,6 +15,10 @@ env:
   ECS_TASK_DEFINITION: .aws/ecs/SwimSetSpringBackendECSTaskDefinition.json
   CONTAINER_NAME: SwimSetSiteBackendContainer
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   deploy:
     name: Deploy

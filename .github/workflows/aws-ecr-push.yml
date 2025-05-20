@@ -9,7 +9,7 @@ on:
 
 env:
   AWS_REGION: us-east-1
-  ECR_REPOSITORY: swim-set-site-spring-backend # TODO unsure if this require ARN or name, same with below
+  ECR_REPOSITORY: swim-set-site-spring-backend
   ECS_SERVICE: SwimSetSiteBackendService
   ECS_CLUSTER: SwimSetSiteBackendCluster
   ECS_TASK_DEFINITION: .aws/ecs/SwimSetSpringBackendECSTaskDefinition.json
@@ -27,11 +27,9 @@ jobs:
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@0e613a0980cbf65ed5b322eb7a1e075d28913a83
-        # TODO article here on how to make this more secure and not require me changing Github secrets before every log in
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          role-to-assume: ${{ secrets.AWS_OIDC_ROLE_ARN }}
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Setup Gradle

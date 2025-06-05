@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { ScheduledSet } from '../scheduledset';
 import { NewWorkoutDialogComponent } from '../new-workout-dialog/new-workout-dialog.component';
+import { API_PREFIX } from '../../environment';
 
 @Component({
   selector: 'app-swim-calendar',
@@ -56,7 +57,7 @@ export class SwimCalendarComponent {
       let setId = result
       let setOrder = this.setsPerformed.length + 1
       let workoutId = -1
-      this.client.get<any>("/setschedule/maxId").subscribe(result => {
+      this.client.get<any>(API_PREFIX + "/setschedule/maxId").subscribe(result => {
         workoutId = result["maxId"] + 1
 
         let newWorkout = {
@@ -67,7 +68,7 @@ export class SwimCalendarComponent {
         }
   
         console.log("new workout details", newWorkout)
-        this.client.post("/setschedule", newWorkout, { observe: 'response'}).subscribe(result => {
+        this.client.post(API_PREFIX + "/setschedule", newWorkout, { observe: 'response'}).subscribe(result => {
           console.log("post results", result)
           this.performLookupWithDate(date)
 
@@ -91,7 +92,7 @@ export class SwimCalendarComponent {
     let httpParams = new HttpParams().set("dateScheduled", date)
     let yardCounter = 0;
     let labels = new Set<string>()
-    this.client.get<ScheduledSet[]>("/setschedule", {params: httpParams}).subscribe((results: ScheduledSet[]) => {
+    this.client.get<ScheduledSet[]>(API_PREFIX + "/setschedule", {params: httpParams}).subscribe((results: ScheduledSet[]) => {
       this.setsPerformed.clear()
       results.forEach(set => {
         console.log(set)

@@ -35,13 +35,13 @@ jobs:
       - name: Node Setup
         uses: actions/setup-node@v3
         with:
-          node-version: '20.14.0'
+          node-version: '20.15.0'
 
       - name: Build Angular Application
         run: |
           # Move to Angular frontend directory, install Angular, build Angular app
           cd angular-frontend
-          npm install -g @angular/cli
+          npm install -g @angular/cli@17
           npm install
           ng build --configuration production
 

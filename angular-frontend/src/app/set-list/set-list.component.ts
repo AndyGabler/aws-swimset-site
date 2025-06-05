@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -18,10 +18,14 @@ export class SetListComponent {
     private router: Router,
     private service: SwimSetService
   ) {
-    this.swimSets = this.service.getSets()
+    this.swimSets = []
   }
   
-  swimSets: SwimSet[] = this.service.getSets()
+  swimSets: SwimSet[];
+
+  ngOnInit() {
+    this.swimSets = this.service.getSets()
+  }
 
   clickSet(swimSet: SwimSet) {
     this.router.navigate(['/setdetail'], { state: { selectedSet: swimSet } });

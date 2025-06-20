@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Liquibase Update
-        uses: liquibase/liquibase-github-action@latest
+        uses: liquibase/liquibase-github-action@v4
         with:
           operation: 'update'
           changeLogFile: 'liquibase-app/src/main/resources/db/changelog/liquibase-changelog.xml'          

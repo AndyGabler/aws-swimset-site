@@ -4,6 +4,10 @@
 
 Backend site for my swim set planner that will be deployed to AWS.
 
+## Connectivity Information
+
+AWS Load Balancer URL: `http://swimsetsiteecrlb-1569916532.us-east-1.elb.amazonaws.com/`
+
 ## ECR Instructions
 
 These instructions are meant for PowerShell using the AWS Tools for PowerShell. If you don't have those, give these commands whirl.

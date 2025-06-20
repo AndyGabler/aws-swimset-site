@@ -1,0 +1,14 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="2025-06-19-initial-swim-set-load" author="AndyGabler">
+        <loadData tableName="swim_set" file="SwimSets.csv" relativeToChangelogFile="true">
+            <column name="name" header="name"/>
+            <column name="description" header="description"/>
+            <column name="rep_count" header="repCount"/>
+            <column name="rep_length" header="repLength"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

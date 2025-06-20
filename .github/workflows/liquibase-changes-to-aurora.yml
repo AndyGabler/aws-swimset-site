@@ -1,0 +1,28 @@
+# Run Liquibase Against Aurora Database
+
+name: Apply Database Changes to Aurora
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  liquibase:
+    name: Liquibaes
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Liquibase Update
+        uses: liquibase/liquibase-github-action@v4.28.0
+        with:
+          operation: 'update'
+          changeLogFile: 'liquibase-app/src/main/resources/db/changelog/liquibase-changelog.xml'          
+          url: 'jdbc:postgresql://swimsetsitedatabasecluster-instance-1.cwz82qyyutw6.us-east-1.rds.amazonaws.com:5432/SwimSetDatabase'
+          username: ${{ secrets.AWS_AURORA_USERNAME }}
+          password: ${{ secrets.AWS_AURORA_PASSWORD }}

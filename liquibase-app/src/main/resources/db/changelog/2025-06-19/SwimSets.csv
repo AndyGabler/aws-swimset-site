@@ -1,0 +1,29 @@
+repLength,repCount,name,description
+150,6,6x150s free,6 reps of 150 yards of freestyle
+25,10,10x25s breast kick,10 reps of 25 yards of breaststroke kick with board
+25,10,10x25s free kick,10 reps of 25 yards of freestyle kick with board
+25,10,10x25s fly kick,10 reps of 25 yards of butterfly kick without board
+50,10,10x50s breast kick,10 reps of 50 yards of breaststroke kick with board
+50,10,10x50s free kick,10 reps of 50 yards of freestyle kick with board
+50,10,10x50s fly kick,10 reps of 50 yards of butterfly kick without board
+150,6,6x150s pull,6 reps of 150 yards of freestyle with pull bouy
+200,5,5x200s pull,5 reps of 200 yards of freestyle with pull bouy
+200,4,4x200s free,4 reps of 200 yards of freestyle
+100,10,10x100s free,10 reps of 100 yards of freestyle
+100,5,5x100s free,5 reps of 100 yards of freestyle. This is a good warm up set.
+50,10,10x50s free,10 reps of 50 yards of freestyle. This is a good warm up set.
+100,5,5x100s IM,"5 reps of 100 yards of IM. This means 25 yards of butterfly, then back stroke, then breast stroke, then freestyle. This is a good warm up set."
+100,8,8x100s IM,"8 reps of 100 yards of IM. This means 25 yards of butterfly, then back stroke, then breast stroke, then freestyle."
+50,10,10x50s breast stroke,10 reps of 50 yards of breast stroke.
+50,10,10x50s fly,10 reps of 50 yards of butterfly.
+75,10,10x75s fly,10 reps of 75 yards of butterfly.
+100,10,10x100s fly,10 reps of 100 yards of butterfly.
+75,10,"10x75s free, no turn breathing",10 reps of 75 yards of freestyle. No breathing between the flags and the wall.
+25,4,"4x25s free, one-breath",4 reps of 25 yards of freestyle. One breath or no breath.
+50,10,"10x50s free, breath crescendo",10 reps of 50 yards of freestyle. Breathing pattern will be breathing every 3-5-7-9 then the 5th and 6th 50 yards are 3 (max) breath 50s. Then descend back down in the pattern of 9-7-5-3.
+50,10,10x50s free sprint,"10 reps of 50 yards of freestyle. This is a sprint, rep does not count unless it is below 35 seconds. The time between the start of one rep to the next shall not exceed 2:30."
+50,10,10x50s free 3 breath,10 reps of 50 yards of freestyle. Only 3 breaths are allowed per 50.
+25,10,10x25s no breath,10 reps of 25 yards of freestyle. No breaths.
+50,10,10x50s breast kick alternate legs,"10 reps of 50 yards of breast stroke kick. Only use one leg per lap, each lap, change the leg being used."
+100,10,10x100s IM,"10 reps of 100 yards of IM. This means 25 yards of butterfly, then back stroke, then breast stroke, then freestyle. This is a good warm up set."
+100,10,10x100s alternate broken sprint and AR,10 reps of 100 yards of freestyle. Every odd 100 will be broken on the 25 and be Sprints on a 45 second interval. Every even 100 will be active rest.

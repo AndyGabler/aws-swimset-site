@@ -24,6 +24,6 @@ jobs:
           operation: 'update'
           changeLogFile: 'liquibase-changelog.xml'          
           classpath: './liquibase-app/src/main/resources/db/changelog'          
-          url: 'jdbc:postgresql://swimsetsitedatabasecluster-instance-1.cwz82qyyutw6.us-east-1.rds.amazonaws.com:5432/SwimSetDatabase'
+          url: 'jdbc:postgresql://swimsetsitedatabasecluster-instance-1.cwz82qyyutw6.us-east-1.rds.amazonaws.com:5432/SwimSetSiteDatabase'
           username: ${{ secrets.AWS_AURORA_USERNAME }}
           password: ${{ secrets.AWS_AURORA_PASSWORD }}

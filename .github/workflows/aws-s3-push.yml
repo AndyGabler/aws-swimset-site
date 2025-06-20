@@ -1,4 +1,4 @@
-# Upload backend to AWS ECS
+# Upload frontent to AWS S3
 
 name: Deploy Frontend to Amazon S3
 

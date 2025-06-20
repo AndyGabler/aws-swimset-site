@@ -10,7 +10,7 @@ on:
 
 jobs:
   liquibase:
-    name: Liquibaes
+    name: Liquibase
     runs-on: ubuntu-latest
     environment: production
 

@@ -55,7 +55,6 @@ jobs:
           echo "DATABASE_NAME=SwimSetSiteDatabase" >> spring-backend/gradle.properties
           echo "DATABASE_USERNAME=$DB_USER" >> spring-backend/gradle.properties
           echo "DATABASE_PASSWORD=$DB_PASS" >> spring-backend/gradle.properties
-          cat spring-backend/gradle.properties
         
 
       - name: Build, tag, and push image to Amazon ECR

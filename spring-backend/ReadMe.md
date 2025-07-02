@@ -4,6 +4,18 @@
 
 Backend site for my swim set planner that will be deployed to AWS.
 
+## Local Setup
+
+Locally, you will need to add a gradle.properties file.
+
+This file is ignored in Git. This is used to configure the connection details to your local PostgresSQL instance. The values in this follow should be as follows:
+```
+DATABASE_HOST= # Database host name and port
+DATABASE_NAME= # name of the database
+DATABASE_USERNAME= # username to sign into database
+DATABASE_PASSWORD= # password to sign into database
+```
+
 ## Connectivity Information
 
 AWS Load Balancer URL: `http://swimsetsiteecrlb-1569916532.us-east-1.elb.amazonaws.com/`

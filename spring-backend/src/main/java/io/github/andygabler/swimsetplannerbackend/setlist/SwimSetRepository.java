@@ -1,7 +1,10 @@
 package io.github.andygabler.swimsetplannerbackend.setlist;
 
 import io.github.andygabler.swimsetplannerbackend.model.SwimSet;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface SwimSetRepository extends CrudRepository<SwimSet, Long>  {
+@Repository
+public interface SwimSetRepository extends JpaRepository<SwimSet, Long> {
+
 }

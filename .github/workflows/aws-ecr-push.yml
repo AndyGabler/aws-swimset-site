@@ -44,6 +44,19 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@62f4f872db3836360b72999f4b87f1ff13310f3a
 
+      - name: Prebuild Property Injection
+        id: prebuild-property-injection
+        env:
+          DB_USER: ${{ secrets.AWS_AURORA_USERNAME }}
+          DB_PASS: ${{ secrets.AWS_AURORA_PASSWORD }}
+        run: |
+          # Go to spring backend directory and inject database properties
+          echo "DATABASE_HOST=swimsetsitedatabasecluster-instance-1.cwz82qyyutw6.us-east-1.rds.amazonaws.com:5432" >> spring-backend/gradle.properties
+          echo "DATABASE_NAME=SwimSetSiteDatabase" >> spring-backend/gradle.properties
+          echo "DATABASE_USERNAME=$DB_USER" >> spring-backend/gradle.properties
+          echo "DATABASE_PASSWORD=$DB_PASS" >> spring-backend/gradle.properties
+        
+
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
         env:

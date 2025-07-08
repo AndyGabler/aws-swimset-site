@@ -1,0 +1,29 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="2025-07-07-workout-table" author="AndyGabler">
+        <createTable tableName="workout">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="date_scheduled" type="DATE">
+                <constraints nullable="false" />
+            </column>
+            <column name="order" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="swim_set_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_workout_swim_set" references="swim_set(id)"/>
+            </column>
+        </createTable>
+        <createIndex tableName="workout" unique="false" indexName="workout_date_search_index">
+            <column name="date_scheduled"/>
+        </createIndex>
+        <createIndex tableName="workout" unique="true" indexName="workout_date_order_search_index">
+            <column name="date_scheduled"/>
+            <column name="order"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

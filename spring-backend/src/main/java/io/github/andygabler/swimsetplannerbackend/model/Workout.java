@@ -1,29 +1,29 @@
 package io.github.andygabler.swimsetplannerbackend.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Id;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
+
+import java.time.LocalDate;
 
 @Data
 @Entity
-public class SwimSet {
+public class Workout {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "rep_length")
-    private int repLength;
-
-    @Column(name = "rep_count")
-    private int repCount;
-
     @Column
-    private String name;
+    private int order;
 
-    @Column
-    private String description;
+    @Column(name = "date_scheduled")
+    private LocalDate dateScheduled;
+
+    @ManyToOne
+    private SwimSet swimSet;
 }

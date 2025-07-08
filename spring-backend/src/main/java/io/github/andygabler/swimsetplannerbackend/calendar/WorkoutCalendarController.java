@@ -1,0 +1,23 @@
+package io.github.andygabler.swimsetplannerbackend.calendar;
+
+import io.github.andygabler.swimsetplannerbackend.model.Workout;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Collections;
+import java.util.List;
+
+@RestController
+public class WorkoutCalendarController {
+
+    @Autowired
+    private WorkoutRepository workoutRepository;
+
+    @GetMapping("/setschedule")
+    @CrossOrigin
+    public List<Workout> getWorkouts() {
+        return workoutRepository.findAll();
+    }
+}

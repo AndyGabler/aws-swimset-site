@@ -56,28 +56,25 @@ export class SwimCalendarComponent {
       let setId = result
       let setOrder = this.setsPerformed.length + 1
       let workoutId = -1
-      this.client.get<any>("/setschedule/maxId").subscribe(result => {
-        workoutId = result["maxId"] + 1
 
-        let newWorkout = {
-          "id": workoutId,
-          "dateScheduled": date,
-          "order": setOrder,
-          "scheduledSetId": setId
-        }
+      let newWorkout = {
+        "id": workoutId,
+        "dateScheduled": date,
+        "order": setOrder,
+        "scheduledSetId": setId
+      }
   
-        console.log("new workout details", newWorkout)
-        this.client.post("/setschedule", newWorkout, { observe: 'response'}).subscribe(result => {
-          console.log("post results", result)
-          this.performLookupWithDate(date)
+      console.log("new workout details", newWorkout)
+      this.client.post("/setschedule", newWorkout, { observe: 'response'}).subscribe(result => {
+        console.log("post results", result)
+        this.performLookupWithDate(date)
 
-          if (result.status == 200) {
-            // TODO technically need to ensure this is a JSON of what we want
-            this.snackBar.open('Set added successfully.', 'Dismiss', {duration: 2000})
-          } else {
-            this.snackBar.open('Error adding set.', 'Dismiss', {duration: 2000})
-          }
-        })
+        if (result.status == 200) {
+          // TODO technically need to ensure this is a JSON of what we want
+          this.snackBar.open('Set added successfully.', 'Dismiss', {duration: 2000})
+        } else {
+          this.snackBar.open('Error adding set.', 'Dismiss', {duration: 2000})
+        }
       })
     })
   }

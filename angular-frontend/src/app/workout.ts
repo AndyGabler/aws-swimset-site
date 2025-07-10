@@ -1,15 +1,15 @@
 import { SwimSet } from "./swimsets";
 
-export class ScheduledSet {
+export class Workout {
     id: number;
     dateScheduled: string;
     order: number;
-    scheduledSet: SwimSet;
+    swimSet: SwimSet;
 
-    constructor(id: number, dateScheduled: string, order: number, scheduledSet: SwimSet) {
+    constructor(id: number, dateScheduled: string, order: number, swimSet: SwimSet) {
         this.id = id;
         this.dateScheduled = dateScheduled;
         this.order = order;
-        this.scheduledSet = scheduledSet;
+        this.swimSet = swimSet;
     }
 }

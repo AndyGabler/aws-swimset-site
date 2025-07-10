@@ -7,9 +7,8 @@ import { formatDate } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { ScheduledSet } from '../scheduledset';
+import { Workout } from '../workout';
 import { NewWorkoutDialogComponent } from '../new-workout-dialog/new-workout-dialog.component';
-import { API_PREFIX } from '../../environment';
 
 @Component({
   selector: 'app-swim-calendar',
@@ -57,7 +56,7 @@ export class SwimCalendarComponent {
       let setId = result
       let setOrder = this.setsPerformed.length + 1
       let workoutId = -1
-      this.client.get<any>(API_PREFIX + "/setschedule/maxId").subscribe(result => {
+      this.client.get<any>("/setschedule/maxId").subscribe(result => {
         workoutId = result["maxId"] + 1
 
         let newWorkout = {
@@ -68,7 +67,7 @@ export class SwimCalendarComponent {
         }
   
         console.log("new workout details", newWorkout)
-        this.client.post(API_PREFIX + "/setschedule", newWorkout, { observe: 'response'}).subscribe(result => {
+        this.client.post("/setschedule", newWorkout, { observe: 'response'}).subscribe(result => {
           console.log("post results", result)
           this.performLookupWithDate(date)
 
@@ -92,13 +91,14 @@ export class SwimCalendarComponent {
     let httpParams = new HttpParams().set("dateScheduled", date)
     let yardCounter = 0;
     let labels = new Set<string>()
-    this.client.get<ScheduledSet[]>(API_PREFIX + "/setschedule", {params: httpParams}).subscribe((results: ScheduledSet[]) => {
+    this.client.get<Workout[]>("/setschedule", {params: httpParams}).subscribe((results: Workout[]) => {
       this.setsPerformed.clear()
       results.forEach(set => {
         console.log(set)
-        yardCounter += (set.scheduledSet.repCount * set.scheduledSet.repLength)
-        this.setsPerformed.push(new FormControl(set.scheduledSet.name))
-        set.scheduledSet.labels.forEach(label => labels.add(label))
+        yardCounter += (set.swimSet.repCount * set.swimSet.repLength)
+        this.setsPerformed.push(new FormControl(set.swimSet.name))
+        // No labels in this version temporarily. Coming soon
+        // set.swimSet.labels.forEach(label => labels.add(label))
       })
       let labelList: string[] = []
       labels.forEach(label => labelList.push(label))

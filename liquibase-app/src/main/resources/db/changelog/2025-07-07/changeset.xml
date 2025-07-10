@@ -3,7 +3,5 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <include file="2025-06-19/changeset.xml" relativeToChangelogFile="true"/>
-    <include file="2025-07-07/changeset.xml" relativeToChangelogFile="true"/>
-
+    <include file="create-workout-table.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

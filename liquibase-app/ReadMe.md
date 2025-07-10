@@ -5,7 +5,7 @@ Liquibase application that is used to generate the PostgresSQL database hosted a
 # AWS Info
 
 Database URL: `swimsetsitedatabasecluster-instance-1.cwz82qyyutw6.us-east-1.rds.amazonaws.com`
-Database Name: SwimSetDatabase
+Database Name: SwimSetSiteDatabase
 
 ## Local Setup
 

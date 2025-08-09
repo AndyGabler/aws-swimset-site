@@ -2,44 +2,64 @@ package io.github.andygabler.swimsetplannerbackend.calendar;
 
 import io.github.andygabler.swimsetplannerbackend.model.Workout;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
 
 @RestController
 public class WorkoutCalendarController {
 
     @Autowired
-    private WorkoutRepository workoutRepository;
+    private WorkoutLookupService lookupService;
+
+    @Autowired
+    private WorkoutEditService editService;
 
     @GetMapping("/setschedule")
+    @CrossOrigin
     public List<Workout> getWorkouts(
         @RequestParam(required = false)
         LocalDate dateScheduled
     ) {
-        List<Workout> results;
-
-        if (dateScheduled != null) {
-            results = workoutRepository.findAllByDateScheduled(dateScheduled);
-        } else {
-            results = workoutRepository.findAll();
-        }
-
-        return results;
+        return lookupService.performWorkoutLookup(null, dateScheduled);
     }
 
     @GetMapping("/setschedule/{id}")
     @CrossOrigin
-    public List<Workout> getWorkoutsById(
-        @PathVariable
-        Long id
-    ) {
-        return workoutRepository.findAllById(Collections.singletonList(id));
+    public List<Workout> getWorkoutsById(@PathVariable Long id) {
+        return lookupService.performWorkoutLookup(id, null);
+    }
+
+    @PostMapping(value = "/setschedule", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
+    public Workout saveWorkout(@RequestBody Workout workout) {
+        return editService.editWorkout(workout, workout.getId());
+    }
+
+    @PostMapping(value = "/setschedule/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
+    public Workout saveWorkoutById(@RequestBody Workout workout, @PathVariable Long id) {
+        return editService.editWorkout(workout, id);
+    }
+
+    @DeleteMapping("/setschedule/{id}")
+    @CrossOrigin
+    public void deleteWorkout(@PathVariable Long id) {
+        editService.deleteWorkout(id);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String handleIllegalArgumentException(IllegalArgumentException exception) {
+        return exception.getMessage();
+    }
+
+    @ExceptionHandler(WorkoutNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleNotFoundException(WorkoutNotFoundException exception) {
+        return exception.getMessage();
     }
 }

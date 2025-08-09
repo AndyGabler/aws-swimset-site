@@ -16,10 +16,10 @@ public class Workout {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
-    @Column
-    private int order;
+    @Column(name = "`order`")
+    private Integer order;
 
     @Column(name = "date_scheduled")
     private LocalDate dateScheduled;

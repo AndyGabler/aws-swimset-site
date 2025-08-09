@@ -2,6 +2,7 @@ package io.github.andygabler.swimsetplannerbackend.calendar;
 
 import io.github.andygabler.swimsetplannerbackend.model.Workout;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -12,4 +13,6 @@ public interface WorkoutRepository extends JpaRepository<Workout, Long> {
 
     List<Workout> findAllByDateScheduled(LocalDate dateScheduled);
 
+    @Query("SELECT MAX(w.order) FROM Workout w WHERE w.dateScheduled = ?1")
+    Integer findMaxOrderForDateScheduled(LocalDate dateScheduled);
 }

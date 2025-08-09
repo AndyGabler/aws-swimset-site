@@ -54,14 +54,12 @@ export class SwimCalendarComponent {
       }
       
       let setId = result
-      let setOrder = this.setsPerformed.length + 1
-      let workoutId = -1
 
       let newWorkout = {
-        "id": workoutId,
         "dateScheduled": date,
-        "order": setOrder,
-        "scheduledSetId": setId
+        "swimSet": {
+          "id": setId
+        }
       }
   
       console.log("new workout details", newWorkout)

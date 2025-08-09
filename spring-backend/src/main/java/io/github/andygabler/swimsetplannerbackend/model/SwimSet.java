@@ -13,13 +13,13 @@ public class SwimSet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Column(name = "rep_length")
-    private int repLength;
+    private Integer repLength;
 
     @Column(name = "rep_count")
-    private int repCount;
+    private Integer repCount;
 
     @Column
     private String name;

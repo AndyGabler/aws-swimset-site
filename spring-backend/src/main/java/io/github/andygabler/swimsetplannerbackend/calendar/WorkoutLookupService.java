@@ -11,8 +11,12 @@ import java.util.List;
 @Service
 public class WorkoutLookupService {
 
+    private final WorkoutRepository workoutRepository;
+
     @Autowired
-    private WorkoutRepository workoutRepository;
+    public WorkoutLookupService(WorkoutRepository aWorkoutRepository) {
+        this.workoutRepository = aWorkoutRepository;
+    }
 
     public List<Workout> performWorkoutLookup(Long id, LocalDate dateScheduled) {
         List<Workout> results;

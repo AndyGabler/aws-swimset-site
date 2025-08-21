@@ -9,12 +9,26 @@ import org.springframework.util.Assert;
 @Service
 public class WorkoutEditService {
 
-    @Autowired
-    private WorkoutRepository workoutRepository;
+    private final WorkoutRepository workoutRepository;
+
+    private final SwimSetRepository swimSetRepository;
 
     @Autowired
-    private SwimSetRepository swimSetRepository;
+    public WorkoutEditService(
+        WorkoutRepository aWorkoutRepository,
+        SwimSetRepository aSwimSetRepository
+    ) {
+        this.workoutRepository = aWorkoutRepository;
+        this.swimSetRepository = aSwimSetRepository;
+    }
 
+    /**
+     * Edit a workout.
+     *
+     * @param inWorkout Workout to get information from. Mutates this parameter.
+     * @param id ID of the workout to edit in the database
+     * @return The saved workout
+     */
     public Workout editWorkout(Workout inWorkout, Long id) {
         final boolean isNewWorkout = id == null;
         /*
@@ -22,11 +36,13 @@ public class WorkoutEditService {
          then do a lookup. If that doesn't exist, throw an exception because we don't want to unintentionally create
          a new row.
          */
+        // TODO do not mutate this parameter
         Workout workoutToSave = inWorkout;
         if (!isNewWorkout) {
             workoutToSave = workoutRepository.findById(id)
                 .orElseThrow(() -> new WorkoutNotFoundException(id));
         } else {
+            Assert.isNull(inWorkout.getId(), "For new Workout, ID cannot be set.");
             Assert.notNull(inWorkout.getDateScheduled(), "For new Workout, dateScheduled must be set.");
             Assert.notNull(inWorkout.getSwimSet(), "For new Workout, swimSet must be set with \"id\" field.");
             Assert.notNull(inWorkout.getSwimSet().getId(), "For new Workout, swimSet must be set with \"id\" field.");
@@ -47,7 +63,7 @@ public class WorkoutEditService {
             )
         ) {
             final long swimSetId = inWorkout.getSwimSet().getId();
-            // Get swimset from the database so that this returns a fully loaded swim set
+            // Get swim set from the database so that this returns a fully loaded swim set
             workoutToSave.setSwimSet(
                 swimSetRepository.findById(swimSetId)
                     .orElseThrow(() -> new IllegalArgumentException("No SwimSet with ID \"" + swimSetId + "\"."))
@@ -74,6 +90,11 @@ public class WorkoutEditService {
         return workoutRepository.save(workoutToSave);
     }
 
+    /**
+     * Delete workout by ID
+     *
+     * @param id ID of the workout to delete
+     */
     public void deleteWorkout(Long id) {
         workoutRepository.delete(
             workoutRepository.findById(id).orElseThrow(() -> new WorkoutNotFoundException(id))
